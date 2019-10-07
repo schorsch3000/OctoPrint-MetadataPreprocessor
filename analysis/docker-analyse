@@ -1,0 +1,5 @@
+#!/bin/bash
+file="$(realpath "$1")"
+cd "$(dirname "$0")/.."
+docker build -t octoprint-metadate-preprocessor .
+docker run --rm -it -v "$file:/tmp/file.gcode" -u "$(id -u)" octoprint-metadate-preprocessor file.gcode
